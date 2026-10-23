@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- Allow spaces in Google Art filter options (e.g. `National Gallery London`).
+
 ## 1.1.1
 
 - Rename the add-on to "Samsung The Frame - Art Changer".
