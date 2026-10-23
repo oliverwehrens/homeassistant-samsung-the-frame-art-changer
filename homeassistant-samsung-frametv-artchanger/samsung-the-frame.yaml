@@ -12,26 +12,26 @@
 # from the URL of the app page (/hassio/addon/<slug>) and replace it below.
 
 input_select:
-  samsung_frame_farbe:
-    name: Frame Farbe
+  samsung_frame_color:
+    name: Frame Color
     icon: mdi:palette
     options:
-      - Alle Farben
-      - Blau
-      - Grün
-      - Rot
+      - Any
+      - Blue
+      - Green
+      - Red
       - Orange
-      - Gelb
-      - Violett
-      - Rosa
-      - Türkis
-      - Grau
+      - Yellow
+      - Purple
+      - Pink
+      - Teal
+      - Gray
 
   samsung_frame_museum:
     name: Frame Museum
     icon: mdi:bank
     options:
-      - Alle Museen
+      - Any
       - MoMA
       - Musée d'Orsay
       - Van Gogh Museum
@@ -40,27 +40,27 @@ input_select:
       - National Gallery London
       - Tate Britain
 
-  samsung_frame_stil:
-    name: Frame Stil / Epoche
+  samsung_frame_style:
+    name: Frame Style
     icon: mdi:brush
     options:
-      - Alle Stile / Epochen
-      - Moderne Kunst
-      - Zeitgenössische Kunst
-      - Impressionismus
-      - Post-Impressionismus
-      - Expressionismus
-      - Abstrakter Expressionismus
-      - Surrealismus
+      - Any
+      - Modern Art
+      - Contemporary Art
+      - Impressionism
+      - Post-Impressionism
+      - Expressionism
+      - Abstract Expressionism
+      - Surrealism
       - Pop Art
       - Renaissance
-      - Barock
-      - Romantik
-      - Realismus
+      - Baroque
+      - Romanticism
+      - Realism
 
 script:
-  samsung_frame_neues_google_art:
-    alias: Samsung Frame neues Kunstwerk
+  samsung_frame_new_art:
+    alias: Samsung Frame new artwork
     icon: mdi:image-refresh
     mode: single
     sequence:
@@ -70,10 +70,10 @@ script:
 
 automation:
   - id: samsung_frame_daily_art
-    alias: Samsung Frame tägliches Kunstwerk
+    alias: Samsung Frame daily artwork
     mode: single
     triggers:
       - trigger: time
         at: "23:00:00"
     actions:
-      - action: script.samsung_frame_neues_google_art
+      - action: script.samsung_frame_new_art

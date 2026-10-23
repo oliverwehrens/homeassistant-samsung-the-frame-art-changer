@@ -49,7 +49,7 @@ through Home Assistant's built-in media source.
 
 [`samsung-the-frame.yaml`](samsung-the-frame.yaml) contains everything this
 page describes except the dashboard card: the three filter helpers, the
-`script.samsung_frame_neues_google_art` start script, and an automation that
+`script.samsung_frame_new_art` start script, and an automation that
 loads a new work daily at 23:00.
 
 1. Copy `samsung-the-frame.yaml` into your Home Assistant config folder (next to
@@ -91,73 +91,31 @@ helper → Dropdown**, or in `configuration.yaml`:
 
 ```yaml
 input_select:
-  samsung_frame_farbe:
-    name: Frame Farbe
-    options: [Alle Farben, Blau, Grün, Rot, Orange, Gelb, Violett, Rosa, Türkis, Grau]
+  samsung_frame_color:
+    name: Frame Color
+    options: [Any, Blue, Green, Red, Orange, Yellow, Purple, Pink, Teal, Gray]
   samsung_frame_museum:
     name: Frame Museum
-    options: [Alle Museen, MoMA, Musée d'Orsay, Van Gogh Museum, Metropolitan Museum, Rijksmuseum, National Gallery London, Tate Britain]
-  samsung_frame_stil:
-    name: Frame Stil
-    options: [Alle Stile / Epochen, Moderne Kunst, Zeitgenössische Kunst, Impressionismus, Post-Impressionismus, Expressionismus, Abstrakter Expressionismus, Surrealismus, Pop Art, Renaissance, Barock, Romantik, Realismus]
+    options: [Any, MoMA, Musée d'Orsay, Van Gogh Museum, Metropolitan Museum, Rijksmuseum, National Gallery London, Tate Britain]
+  samsung_frame_style:
+    name: Frame Style
+    options: [Any, Modern Art, Contemporary Art, Impressionism, Post-Impressionism, Expressionism, Abstract Expressionism, Surrealism, Pop Art, Renaissance, Baroque, Romanticism, Realism]
 ```
 
-English values work as well (e.g. `ANY`, `Blue`, `Modern Art`,
-`Impressionism`). Unknown values log a warning and mean no restriction. If you
-use other entity IDs, set them in `google_color_entity`,
+German values work as well (e.g. `Alle Farben`, `Blau`, `Moderne Kunst`,
+`Impressionismus`). Unknown values log a warning and mean no restriction. If
+you use other entity IDs, set them in `google_color_entity`,
 `google_museum_entity` and `google_style_entity`.
-
-The default entity IDs and options are:
-
-### `input_select.samsung_frame_farbe`
-
-- Alle Farben
-- Blau
-- Grün
-- Rot
-- Orange
-- Gelb
-- Violett
-- Rosa
-- Türkis
-- Grau
-
-### `input_select.samsung_frame_museum`
-
-- Alle Museen
-- MoMA
-- Musée d’Orsay
-- Van Gogh Museum
-- Metropolitan Museum
-- Rijksmuseum
-- National Gallery London
-- Tate Britain
-
-### `input_select.samsung_frame_stil`
-
-- Alle Stile / Epochen
-- Moderne Kunst
-- Zeitgenössische Kunst
-- Impressionismus
-- Post-Impressionismus
-- Expressionismus
-- Abstrakter Expressionismus
-- Surrealismus
-- Pop Art
-- Renaissance
-- Barock
-- Romantik
-- Realismus
 
 The corresponding app options are:
 
 ```yaml
 google_color: ANY
-google_color_entity: input_select.samsung_frame_farbe
+google_color_entity: input_select.samsung_frame_color
 google_museum: ANY
 google_museum_entity: input_select.samsung_frame_museum
 google_style: ANY
-google_style_entity: input_select.samsung_frame_stil
+google_style_entity: input_select.samsung_frame_style
 google_landscape_only: true
 google_tv_format_only: false
 ```
@@ -183,13 +141,13 @@ silently weakening the selected filters and without repeating an old work.
 
 ## Script to start the app
 
-The dashboard card below calls `script.samsung_frame_neues_google_art`. Create
+The dashboard card below calls `script.samsung_frame_new_art`. Create
 it in **Settings → Automations & scenes → Scripts**, or in `configuration.yaml`:
 
 ```yaml
 script:
-  samsung_frame_neues_google_art:
-    alias: Samsung Frame neues Google Art
+  samsung_frame_new_art:
+    alias: Samsung Frame new artwork
     sequence:
       - action: hassio.addon_start
         data:
@@ -213,18 +171,18 @@ without leaving the card stuck on “loading”.
 type: vertical-stack
 cards:
   - type: entities
-    title: Kunstfilter
+    title: Art filters
     show_header_toggle: false
     entities:
-      - entity: input_select.samsung_frame_farbe
-        name: Farbe
+      - entity: input_select.samsung_frame_color
+        name: Color
       - entity: input_select.samsung_frame_museum
         name: Museum
-      - entity: input_select.samsung_frame_stil
-        name: Stil / Epoche
+      - entity: input_select.samsung_frame_style
+        name: Style / period
 
   - type: custom:button-card
-    name: Neues Kunstwerk laden
+    name: Load new artwork
     icon: mdi:palette
     show_name: true
     show_state: false
@@ -249,7 +207,7 @@ cards:
                 }).then((result) => {
                   this._frameArtUrl = result.url;
                 }).catch(() => {
-                  // Beim nächsten Update-Timer wird es erneut versucht.
+                  // Retried on the next update timer.
                 }).finally(() => {
                   this._frameArtResolving = false;
                 });
@@ -292,7 +250,7 @@ cards:
         [[[
           void helpers.runAction({
             action: "perform-action",
-            perform_action: "script.samsung_frame_neues_google_art"
+            perform_action: "script.samsung_frame_new_art"
           });
 
           const mediaId =
@@ -305,7 +263,7 @@ cards:
             }).then((result) => {
               this._frameArtUrl = result.url;
             }).catch(() => {
-              // Eine spätere Aktualisierung darf weiterlaufen.
+              // A later refresh may still succeed.
             });
           };
 

@@ -64,11 +64,11 @@ Install this addon by adding the repository:
 | `tv` | `192.168.1.199` | IP address of your Samsung Frame TV. Comma-separate multiple TVs, e.g. `192.168.1.10, 192.168.1.11`. |
 | `google_art` | `true` | Use images from Google Arts & Culture. |
 | `google_color` | `ANY` | Color filter, used when the color helper is unavailable. |
-| `google_color_entity` | `input_select.samsung_frame_farbe` | Helper entity for the color filter. |
+| `google_color_entity` | `input_select.samsung_frame_color` | Helper entity for the color filter. |
 | `google_museum` | `ANY` | Museum filter, used when the museum helper is unavailable. |
 | `google_museum_entity` | `input_select.samsung_frame_museum` | Helper entity for the museum filter. |
 | `google_style` | `ANY` | Style/period filter, used when the style helper is unavailable. |
-| `google_style_entity` | `input_select.samsung_frame_stil` | Helper entity for the style filter. |
+| `google_style_entity` | `input_select.samsung_frame_style` | Helper entity for the style filter. |
 | `google_landscape_only` | `true` | Skip portrait and square Google artworks. |
 | `google_tv_format_only` | `false` | Only accept Google artworks close to 16:9. Falls back to a landscape work on a black canvas if none is found. |
 | `download_high_res` | `true` | (Google Art only) Download high-resolution images using dezoomify. |

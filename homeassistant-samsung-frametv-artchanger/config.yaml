@@ -19,11 +19,11 @@ options:
   tv: "192.168.1.199"
   google_art: true
   google_color: "ANY"
-  google_color_entity: "input_select.samsung_frame_farbe"
+  google_color_entity: "input_select.samsung_frame_color"
   google_museum: "ANY"
   google_museum_entity: "input_select.samsung_frame_museum"
   google_style: "ANY"
-  google_style_entity: "input_select.samsung_frame_stil"
+  google_style_entity: "input_select.samsung_frame_style"
   google_landscape_only: true
   google_tv_format_only: false
   download_high_res: true
