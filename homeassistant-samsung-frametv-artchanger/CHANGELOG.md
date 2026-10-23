@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.1
+
+- Rename the add-on to "Samsung The Frame - Art Changer".
+- Build the add-on from this repository instead of pulling the vivalatech image.
+- Allow spaces in the comma-separated TV IP list.
+- Always upload a staged `selected_frame_art.jpg`, even if a file with that name was sent before.
+- Read local media from `/media/frame` and skip TVs without an available image.
+- Time out after 10 seconds and log one line when a TV is unreachable.
+
 ## 1.1.0
 
 - Add Google Arts & Culture color, museum, and style/period filters.
