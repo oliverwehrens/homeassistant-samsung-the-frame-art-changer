@@ -145,7 +145,12 @@ def get_image_for_tv(tv_ip: str):
         logging.error('No unused image is available from the selected source')
         return None, None, None, None, None
 
-    remote_filename = utils.get_remote_filename(image_url, selected_source.__name__, tv_ip)
+    # A staged file can change content under the same name, so always upload it
+    skip_upload_cache = getattr(selected_source, 'skip_upload_cache', lambda _: False)
+    if skip_upload_cache(image_url):
+        remote_filename = None
+    else:
+        remote_filename = utils.get_remote_filename(image_url, selected_source.__name__, tv_ip)
 
     image_data, file_type = selected_source.get_image(args, image_url)
     if image_data is None:

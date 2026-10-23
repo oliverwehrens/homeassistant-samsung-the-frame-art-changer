@@ -44,6 +44,11 @@ def get_image_url(args, excluded_urls: Optional[Set[str]] = None):
     return relative_path
 
 
+def skip_upload_cache(image_url) -> bool:
+    """The staged file is replaced in place, so a cached upload may show stale art"""
+    return image_url == preferred_selected_filename
+
+
 def get_image(args, image_url) -> Tuple[Optional[BytesIO], Optional[str]]:
     if not image_url:
         return None, None

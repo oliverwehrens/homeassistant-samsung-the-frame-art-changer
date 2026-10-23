@@ -27,6 +27,25 @@ class MediaFolderTests(unittest.TestCase):
         finally:
             media_folder.folder_path = original_path
 
+    def test_staged_file_is_selected_even_after_it_was_sent(self):
+        original_path = media_folder.folder_path
+        try:
+            with tempfile.TemporaryDirectory() as temp_directory:
+                media_folder.folder_path = temp_directory
+                Path(temp_directory, 'other.jpg').touch()
+                Path(temp_directory, 'selected_frame_art.jpg').touch()
+
+                self.assertEqual(
+                    media_folder.get_image_url(None, {'selected_frame_art.jpg'}),
+                    'selected_frame_art.jpg',
+                )
+        finally:
+            media_folder.folder_path = original_path
+
+    def test_only_staged_file_skips_upload_cache(self):
+        self.assertTrue(media_folder.skip_upload_cache('selected_frame_art.jpg'))
+        self.assertFalse(media_folder.skip_upload_cache('other.jpg'))
+
     def test_previously_sent_images_are_not_selected(self):
         original_path = media_folder.folder_path
         try:
