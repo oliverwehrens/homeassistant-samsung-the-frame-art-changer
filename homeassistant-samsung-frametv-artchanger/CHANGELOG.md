@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.1.3
+
+- Default helper entity IDs are now English: `input_select.samsung_frame_color`
+  and `input_select.samsung_frame_style` (`samsung_frame_museum` is unchanged).
+  Existing installs keep their saved values; update them in the configuration.
+- Add `samsung-the-frame.yaml` package with helpers, start script and daily automation.
+
 ## 1.1.2
 
 - Allow spaces in Google Art filter options (e.g. `National Gallery London`).
