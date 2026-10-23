@@ -1,0 +1,79 @@
+# Home Assistant package for the "Samsung The Frame - Art Changer" app.
+#
+# Include it in configuration.yaml:
+#
+#   homeassistant:
+#     packages:
+#       samsung_the_frame: !include samsung-the-frame.yaml
+#
+# The app slug below assumes the app was installed from
+# https://github.com/oliverwehrens/homeassistant-samsung-the-frame-art-changer
+# (prefix 9c41c859). If you installed it from another repository, copy the slug
+# from the URL of the app page (/hassio/addon/<slug>) and replace it below.
+
+input_select:
+  samsung_frame_farbe:
+    name: Frame Farbe
+    icon: mdi:palette
+    options:
+      - Alle Farben
+      - Blau
+      - Grün
+      - Rot
+      - Orange
+      - Gelb
+      - Violett
+      - Rosa
+      - Türkis
+      - Grau
+
+  samsung_frame_museum:
+    name: Frame Museum
+    icon: mdi:bank
+    options:
+      - Alle Museen
+      - MoMA
+      - Musée d'Orsay
+      - Van Gogh Museum
+      - Metropolitan Museum
+      - Rijksmuseum
+      - National Gallery London
+      - Tate Britain
+
+  samsung_frame_stil:
+    name: Frame Stil / Epoche
+    icon: mdi:brush
+    options:
+      - Alle Stile / Epochen
+      - Moderne Kunst
+      - Zeitgenössische Kunst
+      - Impressionismus
+      - Post-Impressionismus
+      - Expressionismus
+      - Abstrakter Expressionismus
+      - Surrealismus
+      - Pop Art
+      - Renaissance
+      - Barock
+      - Romantik
+      - Realismus
+
+script:
+  samsung_frame_neues_google_art:
+    alias: Samsung Frame neues Kunstwerk
+    icon: mdi:image-refresh
+    mode: single
+    sequence:
+      - action: hassio.addon_start
+        data:
+          addon: 9c41c859_hass-frametv-artchanger
+
+automation:
+  - id: samsung_frame_daily_art
+    alias: Samsung Frame tägliches Kunstwerk
+    mode: single
+    triggers:
+      - trigger: time
+        at: "23:00:00"
+    actions:
+      - action: script.samsung_frame_neues_google_art

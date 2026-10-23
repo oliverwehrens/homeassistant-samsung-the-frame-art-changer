@@ -42,8 +42,37 @@ truly exact 16:9 museum works are rare.
 4. Start the app manually or from a Home Assistant script/automation whenever a
    new work is wanted.
 
-No `configuration.yaml` change is needed. The dashboard resolves the preview
+The app itself needs no `configuration.yaml` change. The dashboard resolves the preview
 through Home Assistant's built-in media source.
+
+## Home Assistant package
+
+[`samsung-the-frame.yaml`](samsung-the-frame.yaml) contains everything this
+page describes except the dashboard card: the three filter helpers, the
+`script.samsung_frame_neues_google_art` start script, and an automation that
+loads a new work daily at 23:00.
+
+1. Copy `samsung-the-frame.yaml` into your Home Assistant config folder (next to
+   `configuration.yaml`).
+2. Add it as a package in `configuration.yaml`. If a `homeassistant:` section
+   already exists, add only the `packages:` part to it:
+
+   ```yaml
+   homeassistant:
+     packages:
+       samsung_the_frame: !include samsung-the-frame.yaml
+   ```
+
+3. Check the app slug in the script. It assumes the app was installed from
+   this repository (`9c41c859_hass-frametv-artchanger`). Otherwise copy the
+   slug from the URL of the app page (`/hassio/addon/<slug>`).
+4. Adjust or remove the automation time if you want.
+5. Go to **Developer tools → YAML**, run **Check configuration**, then restart
+   Home Assistant.
+
+Entities defined in a package are read-only in the UI; edit the file instead.
+Remove any helpers or scripts with the same entity IDs that you created in the
+UI before, otherwise Home Assistant reports duplicates.
 
 ## Filter helpers
 
