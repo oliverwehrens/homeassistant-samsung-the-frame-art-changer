@@ -3,6 +3,12 @@
 ![TV with some art on it ](https://i.imgur.com/BunHdwb.jpeg)
 
 This add-on is built on the awesome work of <https://github.com/ow/samsung-frame-art> and <https://github.com/gijsvdhoven/homeassistant-addons>. 
+
+It is a fork of the original add-on by [vivalatech](https://github.com/vivalatech/homeassistant-addons) and includes these pull requests from that repository:
+- [#9 Support staged local Frame TV artwork](https://github.com/vivalatech/homeassistant-addons/pull/9) by [@Yurii201811](https://github.com/Yurii201811)
+- [#12 Add Google Arts filters, preview, aspect-ratio preservation, and duplicate prevention](https://github.com/vivalatech/homeassistant-addons/pull/12) by [@volkue-tech](https://github.com/volkue-tech)
+- [#13 Fix media folder path and handle unreachable TV](https://github.com/vivalatech/homeassistant-addons/pull/13)
+
 It pushes images from different sources to your Samsung Frame TV. Supported sources are Google Arts & Culture, Bing Wallpapers and the local media folder.
 
 By starting the add-on it will pick an image based on your configuration and put it on your frame; after the image is placed the add-on will automatically stop again. This for instance can be triggered via an automation to run on a daily basis. Please find an example below.
