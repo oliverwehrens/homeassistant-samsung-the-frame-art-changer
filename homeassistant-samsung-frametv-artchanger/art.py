@@ -70,11 +70,11 @@ if not sources:
     logging.error('No image source specified. Please use --google-art, --bing-wallpapers, or --media-folder')
     sys.exit(1)
 
-tvip = args.tvip.split(',') if args.tvip else []
+tvip = [ip.strip() for ip in args.tvip.split(',') if ip.strip()] if args.tvip else []
 use_same_image = args.same_image
 preview_path = '/media/frame/latest.jpg'
 
-utils = Utils(args.tvip, uploaded_files)
+utils = Utils(','.join(tvip), uploaded_files)
 
 def process_tv(tv_ip: str, image_data: BytesIO, file_type: str, image_url: str, remote_filename: str, source_name: str):
     if not image_url or not source_name:

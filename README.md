@@ -24,7 +24,7 @@ If multiple sources are enabled it will randomly choose a source on each run.
 - **No repeats**: images already sent are not picked again, across all sources. The history is kept in `/media/frame/uploaded_files.json` and survives add-on updates.
 - **Dashboard preview**: the image sent to the TV is saved as `/media/frame/latest.jpg`.
 - **Staged local artwork**: put `/media/frame/selected_frame_art.jpg` in place to show exactly that image.
-- **Multiple TVs**: pass a comma-separated list of IPs; each TV gets its own image unless **Same Image** is enabled.
+- **Multiple TVs**: set `tv` to a comma-separated list of IPs (spaces allowed, e.g. `192.168.1.10, 192.168.1.11`). TVs are updated one after another; each gets its own image unless **Same Image** is enabled. A TV that is off is skipped. Images already sent to any TV are not picked again for another TV.
 - **Unreachable TV handling**: if the TV is off or not on the network, the run stops after 10 seconds with one log line and leaves the TV unchanged.
 
 # Google Art
@@ -61,7 +61,7 @@ Install this addon by adding the repository:
 
 | Option | Default | Description |
 | --- | --- | --- |
-| `tv` | `192.168.1.199` | IP address of your Samsung Frame TV. Comma-separate multiple TVs. |
+| `tv` | `192.168.1.199` | IP address of your Samsung Frame TV. Comma-separate multiple TVs, e.g. `192.168.1.10, 192.168.1.11`. |
 | `google_art` | `true` | Use images from Google Arts & Culture. |
 | `google_color` | `ANY` | Color filter, used when the color helper is unavailable. |
 | `google_color_entity` | `input_select.samsung_frame_farbe` | Helper entity for the color filter. |
