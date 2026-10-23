@@ -35,7 +35,7 @@ truly exact 16:9 museum works are rare.
 
 ## Installation
 
-1. Add `https://github.com/vivalatech/homeassistant-addons` to the Home
+1. Add `https://github.com/oliverwehrens/homeassistant-samsung-the-frame-art-changer` to the Home
    Assistant app store repositories.
 2. Install **Samsung Frame TV Art Changer**.
 3. Enter the TV IP address in the app configuration.

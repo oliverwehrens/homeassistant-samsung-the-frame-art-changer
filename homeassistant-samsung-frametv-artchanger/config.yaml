@@ -1,7 +1,7 @@
 name: "Samsung Frame TV Art Changer"
 description: "Displays artwork on Samsung Frame TVs with Google Arts filters, dashboard preview, Bing, or local media."
 version: "1.1.0"
-url: "https://github.com/vivalatech/homeassistant-addons"
+url: "https://github.com/oliverwehrens/homeassistant-samsung-the-frame-art-changer"
 slug: "hass-frametv-artchanger"
 init: false
 startup: once
@@ -47,4 +47,3 @@ schema:
   media_folder: "bool?"
   preserve_aspect_ratio: "bool?"
   same_image: "bool?"
-image: vivalatech/{arch}-addon-homeassistant-samsung-frametv-artchanger

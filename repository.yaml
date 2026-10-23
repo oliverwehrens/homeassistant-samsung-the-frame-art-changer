@@ -1,4 +1,4 @@
 # https://developers.home-assistant.io/docs/add-ons/repository#repository-configuration
 name: Samsung Frame TV Art Changer Add-on
-url: "https://github.com/vivalatech/homeassistant-addons"
-maintainer: Vivalatech
+url: "https://github.com/oliverwehrens/homeassistant-samsung-the-frame-art-changer"
+maintainer: Oliver Wehrens
