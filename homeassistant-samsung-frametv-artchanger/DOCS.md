@@ -37,7 +37,7 @@ truly exact 16:9 museum works are rare.
 
 1. Add `https://github.com/oliverwehrens/homeassistant-samsung-the-frame-art-changer` to the Home
    Assistant app store repositories.
-2. Install **Samsung Frame TV Art Changer**.
+2. Install **Samsung The Frame - Art Changer**.
 3. Enter the TV IP address in the app configuration.
 4. Start the app manually or from a Home Assistant script/automation whenever a
    new work is wanted.
@@ -47,8 +47,38 @@ through Home Assistant's built-in media source.
 
 ## Filter helpers
 
-Create three **Input select** helpers in the Home Assistant UI with these exact
-entity IDs and options.
+The filters can be set in two ways:
+
+- **Fixed values**: set `google_color`, `google_museum` and `google_style` in
+  the app configuration (`ANY` means no restriction) and leave the three
+  `*_entity` options empty.
+- **Helpers**: create three dropdown helpers that you change from a dashboard.
+  The app reads them on every start. A helper value wins over the fixed value;
+  if a helper is missing or unreadable, the app logs a warning and uses the
+  fixed value.
+
+Create the helpers in **Settings → Devices & services → Helpers → Create
+helper → Dropdown**, or in `configuration.yaml`:
+
+```yaml
+input_select:
+  samsung_frame_farbe:
+    name: Frame Farbe
+    options: [Alle Farben, Blau, Grün, Rot, Orange, Gelb, Violett, Rosa, Türkis, Grau]
+  samsung_frame_museum:
+    name: Frame Museum
+    options: [Alle Museen, MoMA, Musée d'Orsay, Van Gogh Museum, Metropolitan Museum, Rijksmuseum, National Gallery London, Tate Britain]
+  samsung_frame_stil:
+    name: Frame Stil
+    options: [Alle Stile / Epochen, Moderne Kunst, Zeitgenössische Kunst, Impressionismus, Post-Impressionismus, Expressionismus, Abstrakter Expressionismus, Surrealismus, Pop Art, Renaissance, Barock, Romantik, Realismus]
+```
+
+English values work as well (e.g. `ANY`, `Blue`, `Modern Art`,
+`Impressionism`). Unknown values log a warning and mean no restriction. If you
+use other entity IDs, set them in `google_color_entity`,
+`google_museum_entity` and `google_style_entity`.
+
+The default entity IDs and options are:
 
 ### `input_select.samsung_frame_farbe`
 
@@ -122,7 +152,29 @@ files. Successfully sent artwork URLs remain excluded after app updates.
 If a very narrow combination has no unused match, the app stops without
 silently weakening the selected filters and without repeating an old work.
 
+## Script to start the app
+
+The dashboard card below calls `script.samsung_frame_neues_google_art`. Create
+it in **Settings → Automations & scenes → Scripts**, or in `configuration.yaml`:
+
+```yaml
+script:
+  samsung_frame_neues_google_art:
+    alias: Samsung Frame neues Google Art
+    sequence:
+      - action: hassio.addon_start
+        data:
+          addon: <prefix>_hass-frametv-artchanger
+```
+
+Replace `<prefix>` with the prefix Home Assistant shows for the installed app.
+You find it in the URL of the app page
+(`/hassio/addon/<prefix>_hass-frametv-artchanger`) or in the log file name.
+
 ## Complete dashboard card
+
+The card requires [button-card](https://github.com/custom-cards/button-card),
+installed via HACS.
 
 This card intentionally has no visual loading state. `button-card`'s supported
 update timer plus three delayed media-source resolutions update the preview
