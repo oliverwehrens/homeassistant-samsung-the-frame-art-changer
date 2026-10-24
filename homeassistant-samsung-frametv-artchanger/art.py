@@ -94,6 +94,10 @@ def process_tv(tv_ip: str, image_data: BytesIO, file_type: str, image_url: str, 
         logging.error(f'TV at {tv_ip} is unreachable: {e}')
         return False
 
+    show = Utils.is_art_mode_on(tv.art())
+    if not show:
+        logging.info(f'TV at {tv_ip} is not in art mode; the new image will show the next time art mode is on')
+
     if remote_filename is None:
         try:
             logging.info(f'Uploading image to TV at {tv_ip}')
@@ -101,7 +105,7 @@ def process_tv(tv_ip: str, image_data: BytesIO, file_type: str, image_url: str, 
             if remote_filename is None:
                 raise Exception('No remote filename returned')
 
-            tv.art().select_image(remote_filename, show=True)
+            tv.art().select_image(remote_filename, show=show)
             save_preview_image(image_data)
             logging.info(f'Image uploaded and selected on TV at {tv_ip}')
             # Add the filename to the list of uploaded filenames
@@ -122,7 +126,7 @@ def process_tv(tv_ip: str, image_data: BytesIO, file_type: str, image_url: str, 
         if not args.upload_all:
             # Select the image using the remote file name only if not in 'upload-all' mode
             logging.info(f'Setting existing image on TV at {tv_ip}, skipping upload')
-            tv.art().select_image(remote_filename, show=True)
+            tv.art().select_image(remote_filename, show=show)
             save_preview_image(image_data)
             return True
     return False

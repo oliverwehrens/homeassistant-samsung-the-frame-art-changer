@@ -1,3 +1,4 @@
+import logging
 from io import BytesIO
 from PIL import Image, ImageOps
 from typing import List, Dict, Optional
@@ -7,6 +8,15 @@ class Utils:
         self.tvips = tvips
         self.uploaded_files = uploaded_files
         self.check_tv_ip = len(tvips.split(',')) > 1 if tvips else False #only check the tv_ip if there is more than one tv_ip
+
+    @staticmethod
+    def is_art_mode_on(art) -> bool:
+        # Treat an unknown state as "off" so the image never interrupts someone watching TV
+        try:
+            return art.get_artmode() == 'on'
+        except Exception as e:
+            logging.warning(f'Could not read art mode state: {e}')
+            return False
 
     @staticmethod
     def resize_and_pad_image(image_data, target_width=3840, target_height=2160):

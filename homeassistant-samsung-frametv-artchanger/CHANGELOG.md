@@ -1,5 +1,14 @@
 # Changelog
 
+## 1.1.7
+
+- Don't interrupt someone watching TV. When the TV is not in art mode, the
+  image is uploaded and selected, and shows the next time art mode is on.
+- Drop support for armhf, armv7 and i386. Home Assistant no longer supports
+  these platforms.
+- Build on the multi-arch Home Assistant base image (Alpine 3.23) instead of
+  the per-architecture 3.18 images. Remove `build.yaml`.
+
 ## 1.1.6
 
 - New colorful icon and logo.
