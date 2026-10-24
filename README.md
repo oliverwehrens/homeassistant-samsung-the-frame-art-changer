@@ -1,3 +1,5 @@
+<img src="homeassistant-samsung-frametv-artchanger/logo.png" alt="Samsung The Frame - Art Changer logo" width="160">
+
 # Samsung The Frame - Art Changer add-on for Home Assistant
 
 ![TV with some art on it ](https://i.imgur.com/BunHdwb.jpeg)
@@ -92,14 +94,7 @@ condition: []
 action:
   - service: hassio.addon_start
     data:
-      addon: local_hass-frametv-artchanger
+      addon: 9c41c859_hass-frametv-artchanger
 ```
 
-Replace `local_hass-frametv-artchanger` with the slug Home Assistant shows for your installed add-on.
-
-## TODO
-
-Here's some ideas for stuff to implement
-- [ ] Delete old N images on TV, e.g. configurable to keep last 100 uploaded images and delete an older image everytime a new one is uploaded
-- [ ] More sources, especially something for high res contemporary art would be awesome or other curated sources
-- [x] Dashboard card that shows currently active art (see [DOCS.md](homeassistant-samsung-frametv-artchanger/DOCS.md))
+`9c41c859_hass-frametv-artchanger` is the slug when the add-on is installed from this repository. Otherwise use the slug from the URL of the add-on page (`/hassio/addon/<slug>`).
