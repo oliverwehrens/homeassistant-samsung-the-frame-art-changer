@@ -2,17 +2,20 @@ name: "Test"
 
 on: [push, pull_request, workflow_dispatch]
 
+permissions:
+  contents: read
+
 jobs:
   unittest:
     name: Unit tests
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
       - name: Set up Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v7.1.0
         with:
-          python-version: "3.11"
+          python-version: "3.12"
       - name: Install dependencies
         run: pip install pillow requests
       - name: Run unit tests
@@ -20,16 +23,29 @@ jobs:
         run: python -m unittest discover -s tests -v
 
   build:
-    name: Test build
-    runs-on: ubuntu-latest
+    name: Test build ${{ matrix.arch }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - arch: amd64
+            os: ubuntu-24.04
+          - arch: aarch64
+            os: ubuntu-24.04-arm
     steps:
       - name: Checkout the repository
-        uses: actions/checkout@v4
-      - name: Test build
-        uses: home-assistant/builder@master
+        uses: actions/checkout@v7.0.1
         with:
-          args: |
-            --test \
-            --all \
-            --target /data/homeassistant-samsung-frametv-artchanger \
-            --docker-hub oliverwehrens
+          persist-credentials: false
+      - name: Test build
+        uses: home-assistant/builder/actions/build-image@2026.09.0
+        with:
+          arch: ${{ matrix.arch }}
+          container-registry-password: ${{ secrets.GITHUB_TOKEN }}
+          context: ./homeassistant-samsung-frametv-artchanger
+          image: ghcr.io/${{ github.repository_owner }}/${{ matrix.arch }}-hass-frametv-artchanger
+          image-tags: test
+          push: "false"
+          cosign: "false"
+          version: test
