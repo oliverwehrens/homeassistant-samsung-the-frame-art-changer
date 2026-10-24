@@ -1,4 +1,4 @@
-# Samsung Frame TV Art Changer add-on for Home Assistant
+# Samsung The Frame - Art Changer add-on for Home Assistant
 
 ![TV with some art on it ](https://i.imgur.com/BunHdwb.jpeg)
 

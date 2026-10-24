@@ -1,4 +1,4 @@
-# Samsung Frame TV Art Changer
+# Samsung The Frame - Art Changer Add-on
 
 This Home Assistant OS/Green app downloads artwork, sends it to a Samsung Frame
 TV, and stops after one successful run. It supports:

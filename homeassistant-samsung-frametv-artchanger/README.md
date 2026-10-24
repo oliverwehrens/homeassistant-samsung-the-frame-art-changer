@@ -1,4 +1,4 @@
-# Samsung Frame TV Art Changer
+# Samsung The Frame - Art Changer Add-on
 
 Send a new artwork to a Samsung Frame TV from Home Assistant. Sources include
 Google Arts & Culture, Bing Wallpapers, and the Home Assistant media folder.

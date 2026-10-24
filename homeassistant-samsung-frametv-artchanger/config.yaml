@@ -1,6 +1,6 @@
 name: "Samsung The Frame - Art Changer"
 description: "Displays artwork on Samsung Frame TVs with Google Arts filters, dashboard preview, Bing, or local media."
-version: "1.1.4"
+version: "1.1.5"
 url: "https://github.com/oliverwehrens/homeassistant-samsung-the-frame-art-changer"
 slug: "hass-frametv-artchanger"
 init: false

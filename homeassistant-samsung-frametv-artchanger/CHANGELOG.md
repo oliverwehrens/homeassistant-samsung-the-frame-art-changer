@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.5
+
+- Use the name "Samsung The Frame - Art Changer" in the repository and docs.
+
 ## 1.1.4
 
 - Log one line instead of a stack trace when the TV is unreachable while the
