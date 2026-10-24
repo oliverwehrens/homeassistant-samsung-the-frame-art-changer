@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.6
+
+- New colorful icon and logo.
+
 ## 1.1.5
 
 - Use the name "Samsung The Frame - Art Changer" in the repository and docs.
