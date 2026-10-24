@@ -1,5 +1,10 @@
 # Changelog
 
+## 1.1.4
+
+- Log one line instead of a stack trace when the TV is unreachable while the
+  connection is created.
+
 ## 1.1.3
 
 - Default helper entity IDs are now English: `input_select.samsung_frame_color`

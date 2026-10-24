@@ -84,10 +84,9 @@ def process_tv(tv_ip: str, image_data: BytesIO, file_type: str, image_url: str, 
         logging.warning(f'No image data is available for TV at {tv_ip}; leaving the current image unchanged')
         return False
 
-    tv = SamsungTVWS(tv_ip, timeout=10)
-
-    # Check if TV supports art mode
+    # Check if TV supports art mode; the constructor already contacts the TV
     try:
+        tv = SamsungTVWS(tv_ip, timeout=10)
         if not tv.art().supported():
             logging.warning(f'TV at {tv_ip} does not support art mode.')
             return False
